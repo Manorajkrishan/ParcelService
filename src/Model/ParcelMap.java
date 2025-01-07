@@ -2,22 +2,30 @@ package Model;
 
 import java.util.HashMap;
 
+import java.util.*;
+
 public class ParcelMap {
-    private HashMap<String, Parcel> parcels;
+    private Map<String, Parcel> parcels = new HashMap<>();
 
-    public ParcelMap() {
-        parcels = new HashMap<>();
+    public void addParcel(String id, Parcel parcel) {
+        parcels.put(id, parcel);
     }
 
-    public void addParcel(Parcel parcel) {
-        parcels.put(parcel.getId(), parcel);
-    }
-
-    public Parcel findParcel(String id) {
+    public Parcel getParcel(String id) {
         return parcels.get(id);
     }
 
-    public HashMap<String, Parcel> getParcels() {
-        return parcels;
+    public void removeParcel(String id) {
+        parcels.remove(id);
+    }
+
+    public List<Parcel> getAllParcels() {
+        return new ArrayList<>(parcels.values());
+    }
+
+    public List<Parcel> getSortedParcels() {
+        List<Parcel> sortedParcels = new ArrayList<>(parcels.values());
+        sortedParcels.sort(Comparator.comparingDouble(Parcel::getWeight));
+        return sortedParcels;
     }
 }

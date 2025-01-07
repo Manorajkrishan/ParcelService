@@ -1,23 +1,21 @@
 package Model;
 
+
 import java.util.LinkedList;
+import java.util.Queue;
 
 public class QueueOfCustomers {
-    private LinkedList<Customer> queue;
-
-    public QueueOfCustomers() {
-        queue = new LinkedList<>();
-    }
+    private Queue<Customer> customerQueue = new LinkedList<>();
 
     public void addCustomer(Customer customer) {
-        queue.add(customer);
+        customerQueue.add(customer);
     }
 
-    public Customer processCustomer() {
-        return queue.poll();
+    public Customer removeCustomer() {
+        return customerQueue.poll();
     }
 
-    public LinkedList<Customer> getQueue() {
-        return queue;
+    public Queue<Customer> getAllCustomers() {
+        return customerQueue;
     }
 }

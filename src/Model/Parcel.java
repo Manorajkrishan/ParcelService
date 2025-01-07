@@ -4,13 +4,13 @@ public class Parcel {
     private String id;
     private int daysInDepot;
     private double weight;
-    private String dimensions;
+    private String destination;
 
-    public Parcel(String id, int daysInDepot, double weight, String dimensions) {
+    public Parcel(String id, int daysInDepot, double weight, String destination) {
         this.id = id;
         this.daysInDepot = daysInDepot;
         this.weight = weight;
-        this.dimensions = dimensions;
+        this.destination = destination;
     }
 
     public String getId() {
@@ -25,12 +25,12 @@ public class Parcel {
         return weight;
     }
 
-    public String getDimensions() {
-        return dimensions;
+    public String getDestination() {
+        return destination;
     }
 
     @Override
     public String toString() {
-        return id + ", " + daysInDepot + ", " + weight + "kg, " + dimensions;
+        return id + ", " + daysInDepot + " days, " + weight + "kg, " + destination;
     }
 }
