@@ -5,6 +5,7 @@ import Model.Log;
 import Model.Parcel;
 import Model.ParcelMap;
 import Model.QueueOfCustomers;
+import View.parcelview;
 
 public class Manager {
     public static void main(String[] args) {
@@ -12,18 +13,10 @@ public class Manager {
         QueueOfCustomers queueOfCustomers = new QueueOfCustomers();
         Log log = Log.getInstance();
 
-        // Initialize data (in a real app, read from files)
+        // Initialize data
         parcelMap.addParcel(new Parcel("C101", 2, 10.0, "2x5x2"));
-        queueOfCustomers.addCustomer(new Customer(1, "John Brown", "C101"));
+        parcelMap.addParcel(new Parcel("C102", 5, 12.5, "3x3x3"));
 
-        Worker worker = new Worker();
-
-        // Process customers
-        while (!queueOfCustomers.getQueue().isEmpty()) {
-            Customer customer = queueOfCustomers.processCustomer();
-            worker.processCustomer(customer, parcelMap, log);
-        }
-
-        log.writeLogToFile("log.txt");
+        javax.swing.SwingUtilities.invokeLater(() -> new parcelview(parcelMap, queueOfCustomers, new Worker(), log));
     }
 }
