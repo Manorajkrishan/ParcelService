@@ -2,14 +2,17 @@ package Model;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class Log {
     private static Log instance;
-    private StringBuilder logData = new StringBuilder();
+    private StringBuilder logBuffer;
 
-    private Log() {}
+    private Log() {
+        logBuffer = new StringBuilder();
+    }
 
-    public static synchronized Log getInstance() {
+    public static Log getInstance() {
         if (instance == null) {
             instance = new Log();
         }
@@ -17,14 +20,14 @@ public class Log {
     }
 
     public void addEntry(String entry) {
-        logData.append(entry).append("\n");
+        logBuffer.append(entry).append("\n");
     }
 
     public void writeToFile(String fileName) {
-        try (FileWriter writer = new FileWriter(fileName)) {
-            writer.write(logData.toString());
-        } catch (IOException e) {
-            System.out.println("Error writing log file: " + e.getMessage());
+        try (PrintWriter writer = new PrintWriter(fileName)) {
+            writer.write(logBuffer.toString());
+        } catch (Exception e) {
+            System.out.println("Error writing log to file: " + e.getMessage());
         }
     }
 }

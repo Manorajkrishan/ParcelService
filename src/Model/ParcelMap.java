@@ -4,28 +4,25 @@ import java.util.HashMap;
 
 import java.util.*;
 
-public class ParcelMap {
-    private Map<String, Parcel> parcels = new HashMap<>();
+import java.util.*;
 
-    public void addParcel(String id, Parcel parcel) {
-        parcels.put(id, parcel);
+public class ParcelMap {
+    private Map<String, Parcel> parcelMap = new HashMap<>();
+
+    public void addParcel(Parcel parcel) {
+        parcelMap.put(parcel.getId(), parcel);
     }
 
-    public Parcel getParcel(String id) {
-        return parcels.get(id);
+    public Parcel findParcel(String id) {
+        return parcelMap.get(id); // Returns the parcel with the given ID, or null if not found
     }
 
     public void removeParcel(String id) {
-        parcels.remove(id);
+        parcelMap.remove(id);
     }
 
     public List<Parcel> getAllParcels() {
-        return new ArrayList<>(parcels.values());
-    }
-
-    public List<Parcel> getSortedParcels() {
-        List<Parcel> sortedParcels = new ArrayList<>(parcels.values());
-        sortedParcels.sort(Comparator.comparingDouble(Parcel::getWeight));
-        return sortedParcels;
+        return new ArrayList<>(parcelMap.values());
     }
 }
+

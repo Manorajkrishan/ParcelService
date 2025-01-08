@@ -11,11 +11,19 @@ public class QueueOfCustomers {
         customerQueue.add(customer);
     }
 
-    public Customer removeCustomer() {
-        return customerQueue.poll();
+    public Customer processCustomer() {
+        return customerQueue.poll(); // Retrieves and removes the head of the queue
     }
 
-    public Queue<Customer> getAllCustomers() {
-        return customerQueue;
+    public boolean isEmpty() {
+        return customerQueue.isEmpty();
+    }
+
+    public void clear() {
+        customerQueue.clear();
+    }
+
+    public Queue<Customer> getQueue() {
+        return new LinkedList<>(customerQueue);
     }
 }
