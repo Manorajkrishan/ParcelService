@@ -11,18 +11,15 @@ import Model.QueueOfCustomers;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.LinkedList;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class parcelview extends JFrame {
-    private ParcelMap parcelMap;
-    private QueueOfCustomers customerQueue;
-    private Worker worker;
-    private Log log;
+    private static final long serialVersionUID = 1L;
+
+    // JFrame is Serializable; these fields are not meant to be serialized.
+    private transient ParcelMap parcelMap;
+    private transient QueueOfCustomers customerQueue;
+    private transient Worker worker;
+    private transient Log log;
 
     private JTextArea parcelArea;
     private JTextArea customerArea;
